@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1046243718009",
+    "project_id": "lg-purisound",
+    "storage_bucket": "lg-purisound.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046243718009:android:deced87d4469a777ccb5a8",
+        "android_client_info": {
+          "package_name": "com.example.hrgg_ansim_sound"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046243718009-m6hjneeblo5i6be42tgvoall6ng1o1jo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hrgg_ansim_sound",
+            "certificate_hash": "64a87a4e52ac5df08b635269b9831fb04532030a"
+          }
+        },
+        {
+          "client_id": "1046243718009-4o1h0n9v8tplmu6sibch178mjnr6qkt2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADN0y4jiOGaD5lTe-hlnvqM8yfM8aolfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046243718009-4o1h0n9v8tplmu6sibch178mjnr6qkt2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

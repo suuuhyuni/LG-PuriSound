@@ -1,0 +1,8 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "dart.flutterSdkPath": "/Users/suuu/flutter",
+    "dart.debugExternalPackageLibraries": false,
+    "dart.debugSdkLibraries": false,
+    "code-runner.showRunIconInEditorTitleMenu": false,
+    "code-runner.runInTerminal": true
+}

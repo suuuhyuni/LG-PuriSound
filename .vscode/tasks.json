@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "LG PuriSound: Run Flutter",
+            "type": "shell",
+            "command": "/Users/suuu/flutter/bin/flutter",
+            "args": [
+                "run",
+                "-t",
+                "lib/main.dart"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "LG PuriSound: Launch Android Emulator",
+            "type": "shell",
+            "command": "/Users/suuu/flutter/bin/flutter",
+            "args": [
+                "emulators",
+                "--launch",
+                "Medium_Phone_API_36.1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

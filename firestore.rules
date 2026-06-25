@@ -1,0 +1,89 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsUser(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function ownsDevice(deviceId) {
+      return signedIn()
+        && get(/databases/$(database)/documents/devices/$(deviceId)).data.ownerId
+          == request.auth.uid;
+    }
+
+    function ownsDeviceAfter(deviceId) {
+      return signedIn()
+        && getAfter(/databases/$(database)/documents/devices/$(deviceId)).data.ownerId
+          == request.auth.uid;
+    }
+
+    match /users/{userId} {
+      allow read, create, update: if ownsUser(userId);
+      allow delete: if false;
+
+      match /loginHistory/{loginId} {
+        allow read, create: if ownsUser(userId);
+        allow update, delete: if false;
+      }
+
+      match /settings/{document=**} {
+        allow read, write: if ownsUser(userId);
+      }
+
+      match /modes/{document=**} {
+        allow read, write: if ownsUser(userId);
+      }
+
+      match /schedules/{document=**} {
+        allow read, write: if ownsUser(userId);
+      }
+
+      match /reports/{document=**} {
+        allow read, write: if ownsUser(userId);
+      }
+
+      match /notifications/{document=**} {
+        allow read, write: if ownsUser(userId);
+      }
+
+      match /aiRecommendations/{document=**} {
+        allow read, write: if ownsUser(userId);
+      }
+    }
+
+    match /devices/{deviceId} {
+      allow create: if signedIn()
+        && request.resource.data.ownerId == request.auth.uid;
+      allow read: if ownsDevice(deviceId);
+      allow update: if ownsDevice(deviceId)
+        && request.resource.data.ownerId == request.auth.uid;
+      allow delete: if false;
+
+      match /noiseEvents/{eventId} {
+        allow read: if ownsDevice(deviceId);
+        allow create: if ownsDeviceAfter(deviceId)
+          && request.resource.data.ownerId == request.auth.uid;
+        allow update, delete: if false;
+      }
+
+      match /maskingActions/{actionId} {
+        allow read: if ownsDevice(deviceId);
+        allow create: if ownsDeviceAfter(deviceId)
+          && request.resource.data.ownerId == request.auth.uid;
+        allow update, delete: if false;
+      }
+
+      match /dailySummaries/{summaryId} {
+        allow read: if ownsDevice(deviceId);
+        allow create, update: if ownsDeviceAfter(deviceId)
+          && request.resource.data.ownerId == request.auth.uid;
+        allow delete: if false;
+      }
+    }
+  }
+}
